@@ -16,6 +16,10 @@ class Api::V1::IdeasController < ApplicationController
     respond_with :api, :v1, Idea.update(params[:id], idea_params)
   end
 
+  def destroy
+    respond_with Idea.destroy(params[:id])
+  end
+
   private
 
   def idea_params
