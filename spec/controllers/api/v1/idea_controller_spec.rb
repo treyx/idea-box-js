@@ -46,4 +46,11 @@ RSpec.describe Api::V1::IdeasController, type: :controller do
     expect(Idea.first.body).to eq("new body")
     expect(response.status).to eq(204)
   end
+
+  it "responds to #destroy" do
+    idea = Idea.create(title: "title", body: "body")
+    expect do
+      delete :destroy, format: :json, id: idea.id
+    end.to change{ Idea.count }.from(1).to(0)
+  end
 end
